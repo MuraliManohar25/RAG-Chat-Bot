@@ -68,18 +68,20 @@ class ChatService:
             conversation = result.scalar_one_or_none()
             if not conversation:
                 raise ValueError("Conversation not found")
+            existing_messages = list(conversation.messages)
         else:
             title = content[:80] + ("..." if len(content) > 80 else "")
             conversation = await self.create_conversation(db, user_id, title)
             conversation_id = conversation.id
+            existing_messages = []
 
         user_message = Message(conversation_id=conversation_id, role="user", content=content.strip())
         db.add(user_message)
         await db.flush()
 
         history = []
-        if conversation.messages:
-            for msg in sorted(conversation.messages, key=lambda m: m.created_at)[-6:]:
+        if existing_messages:
+            for msg in sorted(existing_messages, key=lambda m: m.created_at)[-6:]:
                 history.append({"role": msg.role, "content": msg.content})
 
         retrieved = await retrieval_service.search(db, content, department=department)
