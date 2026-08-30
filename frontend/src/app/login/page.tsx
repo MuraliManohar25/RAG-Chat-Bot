@@ -30,6 +30,7 @@ export default function LoginPage() {
       await signIn(email, password);
     } catch (err: unknown) {
       setError(err instanceof Error ? err.message : "Login failed");
+    } finally {
       setLoading(false);
     }
   };
