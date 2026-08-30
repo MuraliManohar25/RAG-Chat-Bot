@@ -2,7 +2,7 @@
 
 import { useRef, useState, type KeyboardEvent } from "react";
 import { Send } from "lucide-react";
-import { NeuButton } from "@/components/ui/NeuButton";
+import { Button } from "@/components/ui/Button";
 
 interface ChatComposerProps {
   onSend: (message: string) => void;
@@ -34,7 +34,7 @@ export function NeuChatComposer({
   };
 
   return (
-    <div className="rounded-[32px] neu-inset-deep p-3 flex items-end gap-2">
+    <div className="rounded-lg border border-gray-300 bg-white p-3 flex items-end gap-2">
       <textarea
         ref={textareaRef}
         value={value}
@@ -48,9 +48,9 @@ export function NeuChatComposer({
         disabled={disabled}
         rows={1}
         aria-label="Chat message"
-        className="flex-1 resize-none bg-transparent px-3 py-2 text-sm text-[#3D4852] placeholder:text-[#A0AEC0] focus:outline-none min-h-[44px] max-h-[120px]"
+        className="flex-1 resize-none bg-transparent px-3 py-2 text-sm text-gray-900 placeholder:text-gray-400 focus:outline-none min-h-[44px] max-h-[120px]"
       />
-      <NeuButton
+      <Button
         variant="primary"
         onClick={handleSend}
         disabled={disabled || !value.trim()}
@@ -58,7 +58,7 @@ export function NeuChatComposer({
         aria-label="Send message"
       >
         <Send className="h-5 w-5" />
-      </NeuButton>
+      </Button>
     </div>
   );
 }

@@ -5,9 +5,9 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Upload, Check, ArrowDown, Circle } from "lucide-react";
 import { AdminSidebar } from "@/components/admin/AdminSidebar";
-import { NeuCard } from "@/components/ui/NeuCard";
-import { NeuButton } from "@/components/ui/NeuButton";
-import { NeuInput } from "@/components/ui/NeuInput";
+import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
+import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/lib/auth/context";
 import { adminApi } from "@/lib/api/client";
 import { cn } from "@/lib/utils";
@@ -69,24 +69,24 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#E0E5EC]">
+    <div className="flex min-h-screen bg-gray-50">
       <AdminSidebar onLogout={() => { signOut(); router.push("/"); }} />
       <main className="flex-1 p-4 lg:p-8 max-w-2xl">
-        <Link href="/admin/documents" className="text-sm text-[#6C63FF] hover:underline mb-6 inline-block">&larr; Back to Documents</Link>
-        <h1 className="font-display text-2xl font-bold text-[#3D4852] mb-8">Upload Document</h1>
+        <Link href="/admin/documents" className="text-sm text-blue-600 hover:underline mb-6 inline-block">&larr; Back to Documents</Link>
+        <h1 className="text-2xl font-bold text-gray-900 mb-8">Upload Document</h1>
 
         <div
           onDragOver={(e) => { e.preventDefault(); setDragOver(true); }}
           onDragLeave={() => setDragOver(false)}
           onDrop={handleDrop}
           className={cn(
-            "rounded-[32px] neu-inset-deep p-12 text-center mb-6 transition-all",
-            dragOver && "ring-2 ring-[#6C63FF]"
+            "rounded-lg border-2 border-dashed border-gray-300 bg-white p-12 text-center mb-6 transition-all",
+            dragOver && "ring-2 ring-blue-600 border-blue-600"
           )}
         >
-          <Upload className="h-10 w-10 text-[#6C63FF] mx-auto mb-4" />
-          <p className="font-medium text-[#3D4852]">Drop your college document here</p>
-          <p className="text-sm text-[#6B7280] mt-2">or browse files</p>
+          <Upload className="h-10 w-10 text-blue-600 mx-auto mb-4" />
+          <p className="font-medium text-gray-900">Drop your college document here</p>
+          <p className="text-sm text-gray-600 mt-2">or browse files</p>
           <input
             type="file"
             accept=".pdf,.txt"
@@ -97,55 +97,55 @@ export default function UploadPage() {
               if (f) { setFile(f); if (!title) setTitle(f.name.replace(/\.[^.]+$/, "").replace(/_/g, " ")); }
             }}
           />
-          <NeuButton variant="secondary" className="mt-4" onClick={() => document.getElementById("file-input")?.click()}>
+          <Button variant="secondary" className="mt-4" onClick={() => document.getElementById("file-input")?.click()}>
               Browse Files
-            </NeuButton>
-          <p className="text-xs text-[#6B7280] mt-4">PDF · Maximum 25 MB</p>
+            </Button>
+          <p className="text-xs text-gray-600 mt-4">PDF · Maximum 25 MB</p>
           {file && (
-            <div className="mt-4 rounded-2xl neu-small px-4 py-3 text-sm text-[#3D4852]">{file.name}</div>
+            <div className="mt-4 rounded-lg bg-gray-100 px-4 py-3 text-sm text-gray-900">{file.name}</div>
           )}
         </div>
 
-        <NeuCard className="space-y-4 mb-6">
-          <NeuInput placeholder="Document title" value={title} onChange={(e) => setTitle(e.target.value)} />
-          <NeuInput placeholder="Department (optional)" value={department} onChange={(e) => setDepartment(e.target.value)} />
-          <NeuInput placeholder="Document type (e.g. academic_regulations)" value={documentType} onChange={(e) => setDocumentType(e.target.value)} />
-          <NeuInput placeholder="Version (e.g. 2026)" value={version} onChange={(e) => setVersion(e.target.value)} />
-        </NeuCard>
+        <Card className="space-y-4 mb-6">
+          <Input placeholder="Document title" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <Input placeholder="Department (optional)" value={department} onChange={(e) => setDepartment(e.target.value)} />
+          <Input placeholder="Document type (e.g. academic_regulations)" value={documentType} onChange={(e) => setDocumentType(e.target.value)} />
+          <Input placeholder="Version (e.g. 2026)" value={version} onChange={(e) => setVersion(e.target.value)} />
+        </Card>
 
         {currentStep >= 0 && (
-          <NeuCard className="mb-6">
-            <h3 className="font-display font-semibold text-[#3D4852] mb-4">Document Processing</h3>
+          <Card className="mb-6">
+            <h3 className="font-semibold text-gray-900 mb-4">Document Processing</h3>
             <div className="space-y-2">
               {STEPS.map((step, i) => (
                 <div key={step} className="flex items-center gap-3 text-sm">
                   {i < currentStep ? (
-                    <Check className="h-4 w-4 text-[#38B2AC]" />
+                    <Check className="h-4 w-4 text-green-600" />
                   ) : i === currentStep ? (
-                    <Circle className="h-4 w-4 text-[#6C63FF] fill-[#6C63FF]" />
+                    <Circle className="h-4 w-4 text-blue-600 fill-blue-600" />
                   ) : (
-                    <Circle className="h-4 w-4 text-[#A0AEC0]" />
+                    <Circle className="h-4 w-4 text-gray-400" />
                   )}
                   <span className={cn(
-                    i < currentStep ? "text-[#38B2AC]" : i === currentStep ? "text-[#6C63FF]" : "text-[#A0AEC0]"
+                    i < currentStep ? "text-green-600" : i === currentStep ? "text-blue-600" : "text-gray-400"
                   )}>
                     {step}
                   </span>
-                  {i < STEPS.length - 1 && <ArrowDown className="h-3 w-3 text-[#A0AEC0] ml-1" />}
+                  {i < STEPS.length - 1 && <ArrowDown className="h-3 w-3 text-gray-400 ml-1 />}
                 </div>
               ))}
             </div>
-          </NeuCard>
+          </Card>
         )}
 
         {error && <p className="text-sm text-red-500 mb-4" role="alert">{error}</p>}
 
         {done ? (
-          <NeuButton onClick={() => router.push("/admin/documents")} className="w-full">View Documents</NeuButton>
+          <Button onClick={() => router.push("/admin/documents")} className="w-full">View Documents</Button>
         ) : (
-          <NeuButton onClick={handleUpload} loading={uploading} disabled={!file || !title} className="w-full">
+          <Button onClick={handleUpload} loading={uploading} disabled={!file || !title} className="w-full">
             Upload & Index
-          </NeuButton>
+          </Button>
         )}
       </main>
     </div>

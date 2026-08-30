@@ -34,11 +34,11 @@ export function AdminSidebar({ onLogout, mobileOpen, onMobileClose }: AdminSideb
     <div className="flex h-full flex-col p-4">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <p className="font-display text-lg font-bold text-[#3D4852]">College AI</p>
-          <p className="text-xs text-[#6B7280]">Admin Panel</p>
+          <p className="text-lg font-bold text-gray-900">College AI</p>
+          <p className="text-xs text-gray-600">Admin Panel</p>
         </div>
         {onMobileClose && (
-          <button onClick={onMobileClose} className="lg:hidden p-2 rounded-xl neu-small" aria-label="Close menu">
+          <button onClick={onMobileClose} className="lg:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200" aria-label="Close menu">
             <X className="h-5 w-5" />
           </button>
         )}
@@ -53,9 +53,9 @@ export function AdminSidebar({ onLogout, mobileOpen, onMobileClose }: AdminSideb
               href={href}
               onClick={onMobileClose}
               className={cn(
-                "flex items-center gap-3 rounded-2xl px-4 py-3 text-sm transition-all duration-300",
-                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C63FF]",
-                active ? "neu-inset text-[#3D4852] font-medium" : "text-[#6B7280] hover:neu-inset-small"
+                "flex items-center gap-3 rounded-lg px-4 py-3 text-sm transition-all duration-200",
+                "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600",
+                active ? "bg-gray-100 text-gray-900 font-medium" : "text-gray-600 hover:bg-gray-50"
               )}
             >
               <Icon className="h-4 w-4" />
@@ -67,7 +67,7 @@ export function AdminSidebar({ onLogout, mobileOpen, onMobileClose }: AdminSideb
 
       <button
         onClick={onLogout}
-        className="mt-4 flex items-center gap-3 rounded-2xl px-4 py-3 text-sm text-[#6B7280] hover:neu-inset-small focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#6C63FF]"
+        className="mt-4 flex items-center gap-3 rounded-lg px-4 py-3 text-sm text-gray-600 hover:bg-gray-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-600"
       >
         <LogOut className="h-4 w-4" /> Logout
       </button>
@@ -76,13 +76,13 @@ export function AdminSidebar({ onLogout, mobileOpen, onMobileClose }: AdminSideb
 
   return (
     <>
-      <aside className="hidden lg:flex lg:w-64 lg:shrink-0 lg:flex-col bg-[#E0E5EC] neu-inset-deep rounded-[32px] m-4 mr-0">
+      <aside className="hidden lg:flex lg:w-64 lg:shrink-0 lg:flex-col bg-gray-100 border border-gray-200 rounded-lg m-4 mr-0">
         {content}
       </aside>
       {mobileOpen && (
         <div className="fixed inset-0 z-50 lg:hidden">
           <div className="absolute inset-0 bg-black/20" onClick={onMobileClose} />
-          <aside className="absolute left-0 top-0 h-full w-64 bg-[#E0E5EC] shadow-2xl">
+          <aside className="absolute left-0 top-0 h-full w-64 bg-white border-r border-gray-200 shadow-lg">
             {content}
           </aside>
         </div>
@@ -103,14 +103,14 @@ export function NeuStatCard({
   accent?: boolean;
 }) {
   return (
-    <div className="rounded-[32px] bg-[#E0E5EC] p-6 neu">
+    <div className="rounded-lg bg-white border border-gray-200 p-6 shadow-sm">
       <div className="flex items-center gap-4">
-        <div className="flex h-12 w-12 items-center justify-center rounded-full neu-inset-deep">
-          <Icon className={cn("h-5 w-5", accent ? "text-[#38B2AC]" : "text-[#6C63FF]")} />
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-blue-100">
+          <Icon className={cn("h-5 w-5", accent ? "text-green-600" : "text-blue-600")} />
         </div>
         <div>
-          <p className="text-xs text-[#6B7280]">{label}</p>
-          <p className="font-display text-2xl font-bold text-[#3D4852]">{value}</p>
+          <p className="text-xs text-gray-600">{label}</p>
+          <p className="text-2xl font-bold text-gray-900">{value}</p>
         </div>
       </div>
     </div>

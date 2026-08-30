@@ -3,9 +3,9 @@
 import { useState } from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import { NeuButton } from "@/components/ui/NeuButton";
-import { NeuCard } from "@/components/ui/NeuCard";
-import { NeuInput } from "@/components/ui/NeuInput";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
+import { Input } from "@/components/ui/Input";
 import { useAuth } from "@/lib/auth/context";
 
 export default function SignupPage() {
@@ -34,42 +34,42 @@ export default function SignupPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#E0E5EC] px-4">
-      <NeuCard className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gray-50 px-4">
+      <Card className="w-full max-w-md">
         <div className="text-center mb-8">
-          <Link href="/" className="font-display text-xl font-bold text-[#3D4852]">College AI</Link>
-          <h1 className="font-display text-2xl font-bold text-[#3D4852] mt-6">Create account</h1>
-          <p className="text-sm text-[#6B7280] mt-2">Join your college AI assistant</p>
+          <Link href="/" className="text-xl font-bold text-gray-900">College AI</Link>
+          <h1 className="text-2xl font-bold text-gray-900 mt-6">Create account</h1>
+          <p className="text-sm text-gray-600 mt-2">Join your college AI assistant</p>
         </div>
 
         {success ? (
           <div className="text-center py-8">
-            <p className="text-[#38B2AC] font-medium">Account created! Check your email to verify, then sign in.</p>
+            <p className="text-green-600 font-medium">Account created! Check your email to verify, then sign in.</p>
           </div>
         ) : (
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label htmlFor="name" className="block text-sm font-medium text-[#3D4852] mb-2">Full Name</label>
-              <NeuInput id="name" value={name} onChange={(e) => setName(e.target.value)} required />
+              <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-2">Full Name</label>
+              <Input id="name" value={name} onChange={(e) => setName(e.target.value)} required />
             </div>
             <div>
-              <label htmlFor="email" className="block text-sm font-medium text-[#3D4852] mb-2">Email</label>
-              <NeuInput id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
+              <label htmlFor="email" className="block text-sm font-medium text-gray-700 mb-2">Email</label>
+              <Input id="email" type="email" value={email} onChange={(e) => setEmail(e.target.value)} required autoComplete="email" />
             </div>
             <div>
-              <label htmlFor="password" className="block text-sm font-medium text-[#3D4852] mb-2">Password</label>
-              <NeuInput id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} autoComplete="new-password" />
+              <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <Input id="password" type="password" value={password} onChange={(e) => setPassword(e.target.value)} required minLength={6} autoComplete="new-password" />
             </div>
             {error && <p className="text-sm text-red-500" role="alert">{error}</p>}
-            <NeuButton type="submit" loading={loading} className="w-full">Create Account</NeuButton>
+            <Button type="submit" loading={loading} className="w-full">Create Account</Button>
           </form>
         )}
 
-        <p className="text-center text-sm text-[#6B7280] mt-6">
+        <p className="text-center text-sm text-gray-600 mt-6">
           Already have an account?{" "}
-          <Link href="/login" className="text-[#6C63FF] font-medium hover:underline">Sign in</Link>
+          <Link href="/login" className="text-blue-600 font-medium hover:underline">Sign in</Link>
         </p>
-      </NeuCard>
+      </Card>
     </div>
   );
 }

@@ -4,10 +4,8 @@ import { useEffect } from "react";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { User, LogOut } from "lucide-react";
-import { NeuCard } from "@/components/ui/NeuCard";
-import { NeuButton } from "@/components/ui/NeuButton";
-import { NeuIconWell } from "@/components/ui/NeuIconWell";
-import { NeuLoading } from "@/components/ui/NeuLoading";
+import { Card } from "@/components/ui/Card";
+import { Button } from "@/components/ui/Button";
 import { useAuth } from "@/lib/auth/context";
 
 export default function ProfilePage() {
@@ -20,31 +18,31 @@ export default function ProfilePage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#E0E5EC]">
-        <NeuLoading />
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
+        <div className="animate-pulse text-gray-400">Loading...</div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-[#E0E5EC] px-4 py-12">
+    <div className="min-h-screen bg-gray-50 px-4 py-12">
       <div className="mx-auto max-w-md">
-        <Link href="/chat" className="text-sm text-[#6C63FF] hover:underline mb-6 inline-block">&larr; Back to Chat</Link>
-        <NeuCard className="text-center">
-          <NeuIconWell deep size="lg" className="mx-auto mb-4">
-            <User className="h-7 w-7 text-[#6C63FF]" />
-          </NeuIconWell>
-          <h1 className="font-display text-2xl font-bold text-[#3D4852]">{user?.name || "Student"}</h1>
-          <p className="text-sm text-[#6B7280] mt-1">{user?.email}</p>
-          <div className="mt-4 inline-flex rounded-full neu-small px-4 py-1.5 text-xs font-medium text-[#3D4852] capitalize">
+        <Link href="/chat" className="text-sm text-blue-600 hover:underline mb-6 inline-block">&larr; Back to Chat</Link>
+        <Card className="text-center">
+          <div className="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-blue-100">
+            <User className="h-7 w-7 text-blue-600" />
+          </div>
+          <h1 className="text-2xl font-bold text-gray-900">{user?.name || "Student"}</h1>
+          <p className="text-sm text-gray-600 mt-1">{user?.email}</p>
+          <div className="mt-4 inline-flex rounded-full bg-gray-100 px-4 py-1.5 text-xs font-medium text-gray-700 capitalize">
             Role: {user?.role}
           </div>
           <div className="mt-8">
-            <NeuButton variant="secondary" onClick={() => { signOut(); router.push("/"); }} className="w-full">
+            <Button variant="secondary" onClick={() => { signOut(); router.push("/"); }} className="w-full">
               <LogOut className="h-4 w-4" /> Logout
-            </NeuButton>
+            </Button>
           </div>
-        </NeuCard>
+        </Card>
       </div>
     </div>
   );

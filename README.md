@@ -9,7 +9,7 @@ Documents → Text Extraction → Chunking → Embeddings → pgvector → Retri
 ## Features
 
 - **Real RAG pipeline** — no hardcoded answers; every response is grounded in retrieved document chunks
-- **Neumorphic UI** — tactile soft-UI design system across student and admin experiences
+- **Clean, modern UI** — simple, accessible design system across student and admin experiences
 - **Document ingestion** — admin PDF upload with processing status tracking
 - **Vector search** — PostgreSQL + pgvector semantic similarity search
 - **Source citations** — page numbers and document titles from actual retrieved chunks
@@ -47,7 +47,7 @@ Student/Admin → Next.js Frontend → FastAPI Backend
 
 ```
 RAG chatbot/
-├── frontend/          # Next.js app (neumorphic UI)
+├── frontend/          # Next.js app (clean, modern UI)
 ├── backend/           # FastAPI RAG API
 │   ├── app/
 │   │   ├── auth/      # Supabase JWT verification

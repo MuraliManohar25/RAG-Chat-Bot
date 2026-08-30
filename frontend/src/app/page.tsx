@@ -15,9 +15,8 @@ import {
   DollarSign,
   ClipboardList,
 } from "lucide-react";
-import { NeuButton } from "@/components/ui/NeuButton";
-import { NeuCard } from "@/components/ui/NeuCard";
-import { NeuIconWell } from "@/components/ui/NeuIconWell";
+import { Button } from "@/components/ui/Button";
+import { Card } from "@/components/ui/Card";
 
 const features = [
   { icon: Search, title: "Smart Search", description: "Semantic search across all college documents" },
@@ -37,28 +36,28 @@ export default function LandingPage() {
   const [mobileOpen, setMobileOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#E0E5EC]">
+    <div className="min-h-screen bg-white">
       {/* Header */}
-      <header className="sticky top-0 z-40 bg-[#E0E5EC]/90 backdrop-blur-sm">
+      <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-gray-200">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link href="/" className="font-display text-xl font-bold text-[#3D4852]">
+          <Link href="/" className="text-xl font-bold text-gray-900">
             College AI
           </Link>
-          <nav className="hidden md:flex items-center gap-8 text-sm text-[#6B7280]">
-            <a href="#features" className="hover:text-[#3D4852] transition-colors">Features</a>
-            <a href="#how-it-works" className="hover:text-[#3D4852] transition-colors">How it Works</a>
-            <a href="#about" className="hover:text-[#3D4852] transition-colors">About</a>
+          <nav className="hidden md:flex items-center gap-8 text-sm text-gray-600">
+            <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
+            <a href="#how-it-works" className="hover:text-gray-900 transition-colors">How it Works</a>
+            <a href="#about" className="hover:text-gray-900 transition-colors">About</a>
           </nav>
           <div className="hidden md:flex items-center gap-3">
             <Link href="/login">
-              <NeuButton variant="secondary" className="!px-5 !py-2.5">Login</NeuButton>
+              <Button variant="secondary" className="!px-5 !py-2.5">Login</Button>
             </Link>
             <Link href="/signup">
-              <NeuButton className="!px-5 !py-2.5">Start Chatting</NeuButton>
+              <Button className="!px-5 !py-2.5">Start Chatting</Button>
             </Link>
           </div>
           <button
-            className="md:hidden p-2 rounded-xl neu-small"
+            className="md:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200"
             onClick={() => setMobileOpen(!mobileOpen)}
             aria-label="Toggle menu"
           >
@@ -66,11 +65,11 @@ export default function LandingPage() {
           </button>
         </div>
         {mobileOpen && (
-          <div className="md:hidden mx-4 mb-4 rounded-[32px] neu p-6 space-y-4">
-            <a href="#features" className="block text-sm text-[#6B7280]" onClick={() => setMobileOpen(false)}>Features</a>
-            <a href="#how-it-works" className="block text-sm text-[#6B7280]" onClick={() => setMobileOpen(false)}>How it Works</a>
-            <Link href="/login"><NeuButton variant="secondary" className="w-full">Login</NeuButton></Link>
-            <Link href="/signup"><NeuButton className="w-full">Start Chatting</NeuButton></Link>
+          <div className="md:hidden mx-4 mb-4 rounded-lg bg-gray-50 border border-gray-200 p-6 space-y-4">
+            <a href="#features" className="block text-sm text-gray-600" onClick={() => setMobileOpen(false)}>Features</a>
+            <a href="#how-it-works" className="block text-sm text-gray-600" onClick={() => setMobileOpen(false)}>How it Works</a>
+            <Link href="/login"><Button variant="secondary" className="w-full">Login</Button></Link>
+            <Link href="/signup"><Button className="w-full">Start Chatting</Button></Link>
           </div>
         )}
       </header>
@@ -79,49 +78,49 @@ export default function LandingPage() {
       <section className="mx-auto max-w-6xl px-6 py-16 md:py-24">
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
-            <h1 className="font-display text-4xl md:text-6xl font-extrabold tracking-tight text-[#3D4852]">
+            <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
               College AI Assistant
             </h1>
-            <p className="mt-6 text-lg text-[#6B7280] leading-relaxed">
+            <p className="mt-6 text-lg text-gray-600 leading-relaxed">
               Ask questions about your college, courses, fees, exams, hostel and more.
               Get grounded answers from official documents.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Link href="/signup">
-                <NeuButton className="text-base px-8 py-4">Start Chatting</NeuButton>
+                <Button className="text-base px-8 py-4">Start Chatting</Button>
               </Link>
             </div>
             <div className="mt-8 flex flex-wrap gap-3">
               {categories.map(({ icon: Icon, label }) => (
-                <span key={label} className="inline-flex items-center gap-2 rounded-full neu-small px-4 py-2 text-xs text-[#6B7280]">
-                  <Icon className="h-3.5 w-3.5 text-[#6C63FF]" /> {label}
+                <span key={label} className="inline-flex items-center gap-2 rounded-full bg-gray-100 px-4 py-2 text-xs text-gray-600">
+                  <Icon className="h-3.5 w-3.5 text-blue-600" /> {label}
                 </span>
               ))}
             </div>
           </div>
 
-          {/* Neumorphic RAG Visual */}
+          {/* RAG Visual */}
           <div className="relative flex justify-center">
-            <div className="neu-float space-y-4 w-full max-w-sm">
-              <NeuCard className="text-center p-6">
-                <p className="font-display font-bold text-[#3D4852]">COLLEGE KNOWLEDGE</p>
-              </NeuCard>
+            <div className="space-y-4 w-full max-w-sm">
+              <Card className="text-center p-6">
+                <p className="font-bold text-gray-900">COLLEGE KNOWLEDGE</p>
+              </Card>
               <div className="flex justify-center">
-                <ArrowDown className="h-6 w-6 text-[#6C63FF]" />
+                <ArrowDown className="h-6 w-6 text-blue-600" />
               </div>
-              <NeuCard inset className="text-center p-6">
-                <NeuIconWell deep className="mx-auto mb-3">
-                  <Search className="h-5 w-5 text-[#6C63FF]" />
-                </NeuIconWell>
-                <p className="text-sm font-medium text-[#6B7280]">Semantic Search</p>
-              </NeuCard>
+              <Card className="text-center p-6 bg-gray-50">
+                <div className="mx-auto mb-3 flex items-center justify-center w-10 h-10 rounded-full bg-blue-100">
+                  <Search className="h-5 w-5 text-blue-600" />
+                </div>
+                <p className="text-sm font-medium text-gray-600">Semantic Search</p>
+              </Card>
               <div className="flex justify-center">
-                <ArrowDown className="h-6 w-6 text-[#6C63FF]" />
+                <ArrowDown className="h-6 w-6 text-blue-600" />
               </div>
-              <NeuCard className="text-center p-6">
-                <p className="font-display font-bold text-[#6C63FF]">AI ANSWER</p>
-                <p className="text-xs text-[#6B7280] mt-1">With sources</p>
-              </NeuCard>
+              <Card className="text-center p-6">
+                <p className="font-bold text-blue-600">AI ANSWER</p>
+                <p className="text-xs text-gray-600 mt-1">With sources</p>
+              </Card>
             </div>
           </div>
         </div>
@@ -129,30 +128,30 @@ export default function LandingPage() {
 
       {/* Features */}
       <section id="features" className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="font-display text-3xl font-bold text-center text-[#3D4852] mb-12">Features</h2>
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">Features</h2>
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {features.map(({ icon: Icon, title, description }) => (
-            <NeuCard key={title} hover className="text-center">
-              <NeuIconWell deep className="mx-auto mb-4">
-                <Icon className="h-5 w-5 text-[#6C63FF]" />
-              </NeuIconWell>
-              <h3 className="font-display font-semibold text-[#3D4852]">{title}</h3>
-              <p className="mt-2 text-sm text-[#6B7280]">{description}</p>
-            </NeuCard>
+            <Card key={title} hover className="text-center">
+              <div className="mx-auto mb-4 flex items-center justify-center w-10 h-10 rounded-full bg-blue-100">
+                <Icon className="h-5 w-5 text-blue-600" />
+              </div>
+              <h3 className="font-semibold text-gray-900">{title}</h3>
+              <p className="mt-2 text-sm text-gray-600">{description}</p>
+            </Card>
           ))}
         </div>
       </section>
 
       {/* How it Works */}
       <section id="how-it-works" className="mx-auto max-w-6xl px-6 py-16">
-        <h2 className="font-display text-3xl font-bold text-center text-[#3D4852] mb-12">How It Works</h2>
+        <h2 className="text-3xl font-bold text-center text-gray-900 mb-12">How It Works</h2>
         <div className="flex flex-col md:flex-row items-center justify-center gap-6 md:gap-4">
           {["Documents", "Semantic Search", "AI Answer"].map((step, i) => (
             <div key={step} className="flex items-center gap-4">
-              <NeuCard className="px-8 py-6 text-center min-w-[160px]">
-                <p className="font-display font-semibold text-[#3D4852]">{step}</p>
-              </NeuCard>
-              {i < 2 && <ArrowDown className="h-5 w-5 text-[#6C63FF] md:rotate-[-90deg]" />}
+              <Card className="px-8 py-6 text-center min-w-[160px]">
+                <p className="font-semibold text-gray-900">{step}</p>
+              </Card>
+              {i < 2 && <ArrowDown className="h-5 w-5 text-blue-600 md:rotate-[-90deg]" />}
             </div>
           ))}
         </div>
@@ -160,18 +159,18 @@ export default function LandingPage() {
 
       {/* CTA */}
       <section id="about" className="mx-auto max-w-6xl px-6 py-16">
-        <NeuCard className="text-center py-12">
-          <h2 className="font-display text-2xl font-bold text-[#3D4852]">Have a question?</h2>
-          <p className="mt-2 text-[#6B7280]">Start chatting with your college AI assistant today.</p>
+        <Card className="text-center py-12">
+          <h2 className="text-2xl font-bold text-gray-900">Have a question?</h2>
+          <p className="mt-2 text-gray-600">Start chatting with your college AI assistant today.</p>
           <div className="mt-6">
             <Link href="/signup">
-              <NeuButton className="px-8">Ask the College AI</NeuButton>
+              <Button className="px-8">Ask the College AI</Button>
             </Link>
           </div>
-        </NeuCard>
+        </Card>
       </section>
 
-      <footer className="text-center py-8 text-sm text-[#6B7280]">
+      <footer className="text-center py-8 text-sm text-gray-600">
         <p>College AI Assistant — Grounded answers from official documents</p>
       </footer>
     </div>
