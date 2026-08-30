@@ -19,7 +19,7 @@ class Settings(BaseSettings):
     # Gemini
     gemini_api_key: str = ""
     gemini_embedding_model: str = "models/text-embedding-004"
-    gemini_chat_model: str = "models/gemini-2.5-flash"
+    gemini_chat_model: str = "gemini-1.5-flash"
 
     # RAG
     vector_dimension: int = 768

@@ -112,13 +112,14 @@ export function ChatWorkspace({ conversationId }: ChatWorkspaceProps) {
         router.push(`/chat/${response.conversationId}`);
       }
       loadConversations();
-    } catch {
+    } catch (err) {
+      const errorMsg = err instanceof Error && err.message ? err.message : "Something went wrong. Please try again.";
       setMessages((prev) => [
         ...prev,
         {
           id: "temp-error",
           role: "assistant",
-          content: "Something went wrong. Please try again.",
+          content: errorMsg,
           createdAt: new Date().toISOString(),
         },
       ]);

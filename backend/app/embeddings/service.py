@@ -15,7 +15,7 @@ class EmbeddingService:
         self.model = settings.gemini_embedding_model
         self.dimension = settings.vector_dimension
 
-    async def generate_embedding(self, text: str) -> list[float]:
+    async def generate_embedding(self, text: str, task_type: str = "retrieval_query") -> list[float]:
         if not settings.gemini_api_key:
             raise RuntimeError("Gemini API key is not configured")
 
@@ -26,7 +26,7 @@ class EmbeddingService:
         response = genai.embed_content(
             model=self.model,
             content=cleaned,
-            task_type="retrieval_document",
+            task_type=task_type,
         )
         embedding = response['embedding']
 

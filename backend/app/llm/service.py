@@ -50,44 +50,45 @@ class LLMService:
             return UNKNOWN_RESPONSE
 
         if not settings.gemini_api_key:
-            raise RuntimeError("Gemini API key is not configured")
+            logger.warning("Gemini API key is not configured; returning UNKNOWN_RESPONSE")
+            return UNKNOWN_RESPONSE
 
-        messages: list[dict[str, str]] = [{"role": "system", "content": SYSTEM_PROMPT}]
+        try:
+            gemini_messages = []
+            if conversation_history:
+                for msg in conversation_history[-6:]:
+                    role = "user" if msg["role"] == "user" else "model"
+                    gemini_messages.append({"role": role, "parts": [msg["content"]]})
 
-        if conversation_history:
-            for msg in conversation_history[-6:]:
-                messages.append({"role": msg["role"], "content": msg["content"]})
-
-        user_content = (
-            f"Retrieved Knowledge Base Context:\n{context}\n\n"
-            f"---\n\n"
-            f"Student Question: {question}\n\n"
-            f"Answer using ONLY the retrieved context above."
-        )
-        messages.append({"role": "user", "content": user_content})
-
-        # Convert messages to Gemini format
-        gemini_messages = []
-        for msg in messages:
-            if msg["role"] == "system":
-                gemini_messages.append({"role": "user", "parts": [msg["content"]]})
-                gemini_messages.append({"role": "model", "parts": ["Understood. I will follow these instructions."]})
-            elif msg["role"] == "user":
-                gemini_messages.append({"role": "user", "parts": [msg["content"]]})
-            elif msg["role"] == "assistant":
-                gemini_messages.append({"role": "model", "parts": [msg["content"]]})
-
-        model = genai.GenerativeModel(
-            self.model,
-            generation_config=genai.types.GenerationConfig(
-                temperature=0.1,
-                max_output_tokens=1024,
+            user_content = (
+                f"Retrieved Knowledge Base Context:\n{context}\n\n"
+                f"---\n\n"
+                f"Student Question: {question}\n\n"
+                f"Answer using ONLY the retrieved context above."
             )
-        )
+            gemini_messages.append({"role": "user", "parts": [user_content]})
 
-        response = await model.generate_content_async(gemini_messages)
+            model = genai.GenerativeModel(
+                settings.gemini_chat_model,
+                system_instruction=SYSTEM_PROMPT,
+                generation_config=genai.types.GenerationConfig(
+                    temperature=0.1,
+                    max_output_tokens=1024,
+                ),
+            )
 
-        return response.text or UNKNOWN_RESPONSE
+            response = await model.generate_content_async(gemini_messages)
+
+            try:
+                if response.text:
+                    return response.text.strip()
+            except (AttributeError, ValueError):
+                pass
+
+            return UNKNOWN_RESPONSE
+        except Exception as exc:
+            logger.error("Failed to generate answer from Gemini: %s", exc)
+            return UNKNOWN_RESPONSE
 
 
 llm_service = LLMService()
