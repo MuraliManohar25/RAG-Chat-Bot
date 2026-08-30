@@ -13,21 +13,19 @@ async function getAuthHeaders(): Promise<HeadersInit> {
   return headers;
 }
 
-function snakeToCamel(obj: Record<string, unknown>): Record<string, unknown> {
-  const result: Record<string, unknown> = {};
-  for (const [key, value] of Object.entries(obj)) {
-    const camelKey = key.replace(/_([a-z])/g, (_, c) => c.toUpperCase());
-    if (Array.isArray(value)) {
-      result[camelKey] = value.map((item) =>
-        typeof item === "object" && item !== null ? snakeToCamel(item as Record<string, unknown>) : item
-      );
-    } else if (typeof value === "object" && value !== null) {
-      result[camelKey] = snakeToCamel(value as Record<string, unknown>);
-    } else {
-      result[camelKey] = value;
-    }
+function snakeToCamel(obj: unknown): unknown {
+  if (Array.isArray(obj)) {
+    return obj.map((item) => snakeToCamel(item));
   }
-  return result;
+  if (typeof obj === "object" && obj !== null) {
+    const result: Record<string, unknown> = {};
+    for (const [key, value] of Object.entries(obj)) {
+      const camelKey = key.replace(/_([a-z])/g, (_, c) => c.toUpperCase());
+      result[camelKey] = snakeToCamel(value);
+    }
+    return result;
+  }
+  return obj;
 }
 
 async function apiFetch<T>(path: string, options: RequestInit = {}): Promise<T> {
