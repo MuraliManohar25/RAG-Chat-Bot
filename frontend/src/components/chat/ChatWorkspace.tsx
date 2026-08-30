@@ -129,14 +129,14 @@ export function ChatWorkspace({ conversationId }: ChatWorkspaceProps) {
 
   if (authLoading) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-[#E0E5EC]">
+      <div className="min-h-screen flex items-center justify-center bg-gray-50">
         <NeuLoading label="Loading..." />
       </div>
     );
   }
 
   return (
-    <div className="flex h-screen bg-[#E0E5EC]">
+    <div className="flex h-screen bg-gray-50">
       <ChatSidebar
         conversations={conversations}
         activeId={activeId}
@@ -150,13 +150,13 @@ export function ChatWorkspace({ conversationId }: ChatWorkspaceProps) {
       <main className="flex flex-1 flex-col min-w-0">
         <header className="flex items-center gap-3 px-4 py-3 lg:px-6">
           <button
-            className="lg:hidden p-2 rounded-xl neu-small"
+            className="lg:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200"
             onClick={() => setMobileOpen(true)}
             aria-label="Open menu"
           >
             <Menu className="h-5 w-5" />
           </button>
-          <h1 className="font-display text-lg font-bold text-[#3D4852]">College AI</h1>
+          <h1 className="text-lg font-bold text-gray-900">College AI</h1>
         </header>
 
         <div className="flex-1 overflow-y-auto px-4 lg:px-8 pb-4">
