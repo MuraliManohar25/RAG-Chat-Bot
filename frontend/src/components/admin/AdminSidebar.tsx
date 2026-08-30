@@ -34,7 +34,7 @@ export function AdminSidebar({ onLogout, mobileOpen, onMobileClose }: AdminSideb
     <div className="flex h-full flex-col p-4">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <p className="text-lg font-bold text-gray-900">College AI</p>
+          <p className="text-lg font-bold text-gray-900">UniMate</p>
           <p className="text-xs text-gray-600">Admin Panel</p>
         </div>
         {onMobileClose && (

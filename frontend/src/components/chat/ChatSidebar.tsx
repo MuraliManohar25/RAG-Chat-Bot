@@ -52,7 +52,7 @@ export function ChatSidebar({
     <div className="flex h-full flex-col p-4">
       <div className="flex items-center justify-between mb-6">
         <Link href="/" className="text-lg font-bold text-gray-900">
-          College AI
+          UniMate
         </Link>
         {onMobileClose && (
           <button onClick={onMobileClose} className="lg:hidden p-2 rounded-lg bg-gray-100 hover:bg-gray-200" aria-label="Close menu">

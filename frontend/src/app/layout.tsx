@@ -18,7 +18,7 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "College AI Assistant",
+  title: "UniMate Assistant",
   description: "Ask questions about your college. Get grounded answers from official documents.",
 };
 

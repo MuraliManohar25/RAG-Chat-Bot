@@ -156,7 +156,7 @@ export function ChatWorkspace({ conversationId }: ChatWorkspaceProps) {
           >
             <Menu className="h-5 w-5" />
           </button>
-          <h1 className="text-lg font-bold text-gray-900">College AI</h1>
+          <h1 className="text-lg font-bold text-gray-900">UniMate</h1>
         </header>
 
         <div className="flex-1 overflow-y-auto px-4 lg:px-8 pb-4">

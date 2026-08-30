@@ -41,7 +41,7 @@ export default function LandingPage() {
       <header className="sticky top-0 z-40 bg-white/90 backdrop-blur-sm border-b border-gray-200">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link href="/" className="text-xl font-bold text-gray-900">
-            College AI
+            UniMate
           </Link>
           <nav className="hidden md:flex items-center gap-8 text-sm text-gray-600">
             <a href="#features" className="hover:text-gray-900 transition-colors">Features</a>
@@ -79,7 +79,7 @@ export default function LandingPage() {
         <div className="grid md:grid-cols-2 gap-12 items-center">
           <div>
             <h1 className="text-4xl md:text-6xl font-extrabold tracking-tight text-gray-900">
-              College AI Assistant
+              UniMate Assistant
             </h1>
             <p className="mt-6 text-lg text-gray-600 leading-relaxed">
               Ask questions about your college, courses, fees, exams, hostel and more.
@@ -161,17 +161,17 @@ export default function LandingPage() {
       <section id="about" className="mx-auto max-w-6xl px-6 py-16">
         <Card className="text-center py-12">
           <h2 className="text-2xl font-bold text-gray-900">Have a question?</h2>
-          <p className="mt-2 text-gray-600">Start chatting with your college AI assistant today.</p>
+          <p className="mt-2 text-gray-600">Start chatting with your UniMate assistant today.</p>
           <div className="mt-6">
             <Link href="/signup">
-              <Button className="px-8">Ask the College AI</Button>
+              <Button className="px-8">Ask UniMate</Button>
             </Link>
           </div>
         </Card>
       </section>
 
       <footer className="text-center py-8 text-sm text-gray-600">
-        <p>College AI Assistant — Grounded answers from official documents</p>
+        <p>UniMate Assistant — Grounded answers from official documents</p>
       </footer>
     </div>
   );
