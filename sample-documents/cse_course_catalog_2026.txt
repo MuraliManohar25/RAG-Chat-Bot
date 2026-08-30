@@ -1,0 +1,50 @@
+COLLEGE OF ENGINEERING AND TECHNOLOGY
+DEPARTMENT OF COMPUTER SCIENCE - COURSE CATALOG 2026
+
+Chapter 1: B.Tech Computer Science & Engineering
+
+1.1 Program Overview
+The B.Tech CSE program is a 4-year undergraduate program covering core computer science subjects, programming, algorithms, and software engineering.
+
+1.2 Core Courses (Semester 1-2)
+- Programming in C
+- Data Structures
+- Digital Logic Design
+- Mathematics I & II
+- Physics and Chemistry (Engineering)
+
+1.3 Core Courses (Semester 3-4)
+- Object-Oriented Programming (Java)
+- Database Management Systems
+- Computer Organization and Architecture
+- Design and Analysis of Algorithms
+- Operating Systems
+- Discrete Mathematics
+
+1.4 Core Courses (Semester 5-6)
+- Computer Networks
+- Software Engineering
+- Theory of Computation
+- Compiler Design
+- Web Technologies
+- Machine Learning
+
+1.5 Electives (Semester 7-8)
+- Artificial Intelligence
+- Cloud Computing
+- Cyber Security
+- Data Science
+- Mobile Application Development
+- Internet of Things
+
+Chapter 2: Faculty Contact
+
+Head of Department: hod.cse@college.edu
+Department Office: +91-1234567893
+
+Chapter 3: Laboratory Facilities
+
+- Programming Lab (500+ systems)
+- Network and Security Lab
+- AI/ML Lab with GPU servers
+- Project Development Lab
