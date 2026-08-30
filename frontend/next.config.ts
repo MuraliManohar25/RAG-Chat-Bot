@@ -4,7 +4,6 @@ const nextConfig: NextConfig = {
   /* config options here */
   output: 'standalone',
   reactStrictMode: true,
-  swcMinify: true,
   compress: true,
   poweredByHeader: false,
   images: {
