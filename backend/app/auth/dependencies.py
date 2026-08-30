@@ -1,5 +1,6 @@
 import logging
 from dataclasses import dataclass
+from functools import lru_cache
 
 import httpx
 from jose import JWTError, jwt
@@ -20,15 +21,42 @@ class AuthUser:
     name: str | None = None
 
 
+@lru_cache(maxsize=1)
+def get_jwks():
+    """Fetch and cache Supabase's public JWKS. Cache is process-lifetime;
+    if keys rotate, restart the service or add a TTL/refresh strategy."""
+    if not settings.supabase_url:
+        raise ValueError("SUPABASE_URL is not configured")
+    
+    jwks_url = f"{settings.supabase_url}/auth/v1/.well-known/jwks.json"
+    response = httpx.get(jwks_url, timeout=10)
+    response.raise_for_status()
+    return response.json()
+
+
 async def verify_supabase_token(token: str) -> dict:
-    if not settings.supabase_jwt_secret:
-        raise ValueError("SUPABASE_JWT_SECRET is not configured")
+    """Verify a Supabase-issued JWT using ES256 against the project's JWKS."""
+    jwks = get_jwks()
+    try:
+        unverified_header = jwt.get_unverified_header(token)
+    except Exception:
+        raise ValueError("Invalid token header")
+
+    kid = unverified_header.get("kid")
+    key = next((k for k in jwks["keys"] if k["kid"] == kid), None)
+    if key is None:
+        # Key rotated since cache was populated — refresh once and retry
+        get_jwks.cache_clear()
+        jwks = get_jwks()
+        key = next((k for k in jwks["keys"] if k["kid"] == kid), None)
+        if key is None:
+            raise ValueError("Signing key not found in JWKS")
 
     try:
         payload = jwt.decode(
             token,
-            settings.supabase_jwt_secret,
-            algorithms=["HS256"],
+            key,
+            algorithms=["ES256"],
             audience="authenticated",
         )
         return payload
