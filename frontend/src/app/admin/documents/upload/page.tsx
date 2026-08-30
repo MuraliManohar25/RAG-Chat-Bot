@@ -131,7 +131,7 @@ export default function UploadPage() {
                   )}>
                     {step}
                   </span>
-                  {i < STEPS.length - 1 && <ArrowDown className="h-3 w-3 text-gray-400 ml-1 />}
+                  {i < STEPS.length - 1 && <ArrowDown className="h-3 w-3 text-gray-400 ml-1" />}
                 </div>
               ))}
             </div>
