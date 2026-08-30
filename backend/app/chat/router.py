@@ -1,7 +1,11 @@
+import logging
+
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.auth.dependencies import AuthUser
+
+logger = logging.getLogger(__name__)
 from app.auth.router_deps import get_student_user
 from app.chat.schemas import (
     ChatRequest,
@@ -44,6 +48,7 @@ async def send_message(
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc
     except Exception as exc:
+        logger.exception("Failed to process chat message for user_id=%s", user.id)
         raise HTTPException(status_code=500, detail="Failed to process message") from exc
 
 
